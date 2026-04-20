@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <title>Mars Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:       #E8973A;
+      --amber-light: #F5C06A;
+      --amber-glow:  rgba(232,151,58,.35);
+      --navy:        #0D1B2A;
+      --cream:       #FAF4EA;
+      --cream-dark:  #F2E9D8;
+      --text:        #1E1208;
+      --muted:       #5D4A38;
+      --border:      rgba(0,0,0,.09);
+      --safe-top:    env(safe-area-inset-top,    0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left:   env(safe-area-inset-left,   0px);
+      --safe-right:  env(safe-area-inset-right,  0px);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { -webkit-tap-highlight-color: transparent; }
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+    header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: calc(var(--safe-top) + 13px) 18px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: linear-gradient(to bottom, rgba(13,27,42,.82) 0%, transparent 100%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px;
+      box-shadow: 0 0 14px var(--amber-glow);
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: .05em;
+      text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    }
+    .logo-text span { color: var(--amber-light); }
+
+    /* language switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,.12);
+      border: 1.5px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.75);
+      font-family: 'Raleway', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 5px 9px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      /* big enough tap target */
+      min-height: 34px;
+      -webkit-tap-highlight-color: transparent;
+      text-transform: uppercase;
+    }
+    .lang-btn.active,
+    .lang-btn:active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: #fff;
+    }
+    @media (hover: hover) {
+      .lang-btn:hover:not(.active) {
+        background: rgba(255,255,255,.22);
+        color: #fff;
+      }
+    }
+
+    /* ══════════════════════════════
+       SLIDER
+    ══════════════════════════════ */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 78vmax;
+      min-height: 340px;
+      max-height: 540px;
+      overflow: hidden;
+      touch-action: pan-y;
+      user-select: none;
+    }
+    @media (min-width: 768px) {
+      .slider { height: 100vh; max-height: none; }
+    }
+
+    .slides-track {
+      display: flex;
+      height: 100%;
+      will-change: transform;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+    }
+    .slide {
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .slide::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(170deg,
+        rgba(13,27,42,.7) 0%,
+        rgba(13,27,42,.1) 45%,
+        rgba(13,27,42,.72) 100%);
+    }
+    .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80'); }
+    .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=1200&q=80'); }
+    .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1200&q=80'); }
+    .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80'); }
+    .slide:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=80'); }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 56px; left: 18px; right: 18px;
+      z-index: 10; color: #fff;
+    }
+    @media (min-width: 768px) {
+      .slide-caption { left: 56px; right: 38%; bottom: 100px; }
+    }
+    .slide-caption .label {
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--amber-light); margin-bottom: 7px;
+    }
+    .slide-caption h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 5vw, 2.8rem);
+      line-height: 1.2;
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 16px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,.4);
+      border: none; cursor: pointer; padding: 0;
+      position: relative;
+      transition: background .3s, transform .3s;
+    }
+    .dot::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; }
+    .dot.active { background: var(--amber); transform: scale(1.5); }
+
+    .progress-bar {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; background: var(--amber);
+      width: 0%; z-index: 20;
+      transition: width 5s linear;
+    }
+
+    /* ══════════════════════════════
+       PHONE STRIP
+    ══════════════════════════════ */
+    .phone-strip {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+    }
+    .phone-strip a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .phone-strip a:active { color: var(--amber-light); }
+    @media (hover: hover) { .phone-strip a:hover { color: var(--amber-light); } }
+    .phone-icon {
+      width: 36px; height: 36px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--amber-glow);
+    }
+    .phone-label {
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      display: block;
+      margin-bottom: 1px;
+    }
+    @media (min-width: 480px) {
+      .phone-strip a { font-size: 1.25rem; }
+    }
+
+    /* ══════════════════════════════
+       ABOUT
+    ══════════════════════════════ */
+    .about { padding: 36px 18px 28px; }
+    @media (min-width: 768px) {
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 68px 48px 52px;
+        align-items: start;
+      }
+    }
+
+    .section-label {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after {
+      content: ''; width: 28px; height: 1.5px;
+      background: var(--amber); flex-shrink: 0;
+    }
+
+    .about-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.65rem, 5.5vw, 2.85rem);
+      line-height: 1.12; color: var(--navy); margin-bottom: 16px;
+    }
+    .about-left h1 em { font-style: normal; color: var(--amber); }
+
+    .about-left p {
+      font-size: .93rem; line-height: 1.85;
+      color: var(--muted); margin-bottom: 12px; font-weight: 300;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px; margin-top: 22px;
+      padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .stat {
+      text-align: center; background: var(--cream-dark);
+      border-radius: 12px; padding: 12px 6px;
+    }
+    .stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      color: var(--navy); line-height: 1; margin-bottom: 4px;
+    }
+    .stat span {
+      font-size: .58rem; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--muted); font-weight: 600;
+    }
+
+    .about-right { margin-top: 28px; }
+    @media (min-width: 768px) { .about-right { margin-top: 0; } }
+
+    .feature-list { list-style: none; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 13px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      font-size: .89rem; line-height: 1.55; color: var(--muted);
+    }
+    .feature-list li:first-child { border-top: 1px solid var(--border); }
+    .feature-list li strong { display: block; color: var(--text); margin-bottom: 2px; font-size: .92rem; }
+    .feat-icon {
+      width: 40px; height: 40px; min-width: 40px; border-radius: 11px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; box-shadow: 0 3px 10px var(--amber-glow);
+    }
+
+    /* ══════════════════════════════
+       SOCIALS
+    ══════════════════════════════ */
+    .socials-section {
+      background: var(--navy);
+      padding: 48px 18px calc(48px + var(--safe-bottom));
+      text-align: center;
+    }
+    @media (min-width: 768px) { .socials-section { padding: 68px 48px; } }
+
+    .socials-section .section-label { justify-content: center; color: var(--amber-light); }
+    .socials-section .section-label::after { display: none; }
+
+    .socials-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5.5vw, 2.4rem);
+      color: #fff; margin-bottom: 10px;
+    }
+    .socials-section > p {
+      color: rgba(255,255,255,.48); font-size: .87rem;
+      font-weight: 300; margin-bottom: 36px;
+      max-width: 340px; margin-left: auto; margin-right: auto; line-height: 1.65;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px; max-width: 430px; margin: 0 auto;
+    }
+    @media (min-width: 560px) {
+      .social-grid {
+        display: flex; flex-wrap: wrap;
+        justify-content: center; gap: 12px; max-width: 820px;
+      }
+    }
+
+    .social-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 9px; padding: 0 18px; height: 56px;
+      border-radius: 14px; text-decoration: none;
+      font-weight: 700; font-size: .88rem;
+      letter-spacing: .02em; color: #fff;
+      position: relative; overflow: hidden;
+      transition: transform .14s ease, box-shadow .14s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .social-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,.13); opacity: 0; transition: opacity .2s;
+    }
+    .social-btn:active { transform: scale(.95); }
+    .social-btn:active::before { opacity: 1; }
+    @media (hover: hover) {
+      .social-btn:hover { transform: translateY(-4px) scale(1.02); }
+      .social-btn:hover::before { opacity: 1; }
+    }
+    .social-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .btn-facebook  { background: #1877F2; box-shadow: 0 5px 18px rgba(24,119,242,.45); }
+    .btn-instagram { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); box-shadow: 0 5px 18px rgba(220,39,67,.42); }
+    .btn-tiktok    { background: #010101; box-shadow: 0 5px 18px rgba(0,0,0,.55); border: 1.5px solid #2a2a2a; }
+    .btn-telegram  { background: #26A5E4; box-shadow: 0 5px 18px rgba(38,165,228,.42); }
+    .btn-whatsapp  { background: #25D366; box-shadow: 0 5px 18px rgba(37,211,102,.38); }
+    .btn-viber     { background: #7360F2; box-shadow: 0 5px 18px rgba(115,96,242,.42); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: #07111C;
+      padding: 18px 18px calc(18px + var(--safe-bottom));
+      text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 5px;
+    }
+    @media (min-width: 768px) {
+      footer { flex-direction: row; justify-content: space-between; padding: 24px 48px; text-align: left; }
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; color: #fff; font-size: 1rem; letter-spacing: .05em; }
+    .footer-logo span { color: var(--amber-light); }
+    footer p { color: rgba(255,255,255,.27); font-size: .7rem; font-weight: 300; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">🚌</div>
+    <div class="logo-text">Mars<span>Travel</span></div>
+  </a>
+  <div class="lang-switcher" role="group" aria-label="Мова / Language">
+    <button class="lang-btn active" data-lang="uk" aria-pressed="true">УКР</button>
+    <button class="lang-btn" data-lang="ro" aria-pressed="false">ROM</button>
+    <button class="lang-btn" data-lang="en" aria-pressed="false">ENG</button>
+  </div>
+</header>
+
+<!-- SLIDER -->
+<section class="slider" id="slider" aria-label="Фото-галерея">
+  <div class="slides-track" id="track">
+    <div class="slide">
+      <div class="slide-caption">
+        <p class="label" data-i18n="s1label"></p>
+        <h2 data-i18n="s1title"></h2>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-caption">
+        <p class="label" data-i18n="s2label"></p>
+        <h2 data-i18n="s2title"></h2>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-caption">
+        <p class="label" data-i18n="s3label"></p>
+        <h2 data-i18n="s3title"></h2>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-caption">
+        <p class="label" data-i18n="s4label"></p>
+        <h2 data-i18n="s4title"></h2>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-caption">
+        <p class="label" data-i18n="s5label"></p>
+        <h2 data-i18n="s5title"></h2>
+      </div>
+    </div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="progress-bar" id="progress"></div>
+</section>
+
+<!-- PHONE STRIP -->
+<div class="phone-strip">
+  <a href="tel:+380XXXXXXXXX" aria-label="Зателефонувати">
+    <div class="phone-icon">📞</div>
+    <div>
+      <span class="phone-label" data-i18n="phoneLabel"></span>
+      +38 (0XX) XXX-XX-XX
+    </div>
+  </a>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-left">
+    <p class="section-label" data-i18n="aboutLabel"></p>
+    <h1 data-i18n="aboutTitle"></h1>
+    <p data-i18n="aboutP1"></p>
+    <p data-i18n="aboutP2"></p>
+    <div class="stats">
+      <div class="stat"><strong>10+</strong><span data-i18n="stat1"></span></div>
+      <div class="stat"><strong>50+</strong><span data-i18n="stat2"></span></div>
+      <div class="stat"><strong>5000+</strong><span data-i18n="stat3"></span></div>
+    </div>
+  </div>
+
+  <div class="about-right">
+    <p class="section-label" data-i18n="whyLabel"></p>
+    <ul class="feature-list">
+      <li>
+        <div class="feat-icon">🚌</div>
+        <div><strong data-i18n="f1title"></strong><span data-i18n="f1text"></span></div>
+      </li>
+      <li>
+        <div class="feat-icon">🛡️</div>
+        <div><strong data-i18n="f2title"></strong><span data-i18n="f2text"></span></div>
+      </li>
+      <li>
+        <div class="feat-icon">🗺️</div>
+        <div><strong data-i18n="f3title"></strong><span data-i18n="f3text"></span></div>
+      </li>
+      <li>
+        <div class="feat-icon">💰</div>
+        <div><strong data-i18n="f4title"></strong><span data-i18n="f4text"></span></div>
+      </li>
+      <li>
+        <div class="feat-icon">📞</div>
+        <div><strong data-i18n="f5title"></strong><span data-i18n="f5text"></span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOCIALS -->
+<section class="socials-section">
+  <p class="section-label" data-i18n="socialLabel"></p>
+  <h2 data-i18n="socialTitle"></h2>
+  <p data-i18n="socialSub"></p>
+
+  <div class="social-grid">
+    <a href="https://facebook.com/MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-facebook" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.93-1.956 1.874v2.295h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://instagram.com/MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://tiktok.com/@MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-tiktok" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+      TikTok
+    </a>
+    <a href="https://t.me/MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-telegram" aria-label="Telegram">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+    <a href="https://wa.me/380XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="social-btn btn-whatsapp" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="viber://chat?number=%2B380XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="social-btn btn-viber" aria-label="Viber">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.398.002C9.473.028 5.331.344 3.014 2.467 1.294 4.177.693 6.698.623 9.82c-.07 3.12-.154 8.972 5.5 10.557v2.428s-.038.968.606 1.163c.76.234 1.14-.262 3.532-3.102 3.986.33 7.05-.427 7.4-.54.806-.262 5.367-.84 6.108-6.862.764-6.2-.37-10.116-2.978-11.905l-.001-.001c-.706-.49-3.373-1.564-9.392-1.556zm.056 1.718c5.46-.008 7.913.892 8.478 1.274 2.104 1.462 3.085 4.916 2.408 10.299-.612 5.022-4.168 5.34-4.854 5.562-.294.096-3.004.756-6.433.537 0 0-2.55 3.072-3.344 3.871-.245.248-.515.222-.51-.267 0-.327.019-4.055.019-4.055-4.848-1.326-4.567-6.328-4.509-9.07.061-2.745.556-4.88 2.01-6.334 1.968-1.82 5.588-1.81 6.735-1.817zm-.046 2.386c-.205.006-.307.207-.309.379 0 0-.057 3.838 3.765 4.849l.01-4.849s-.096-.39-.464-.379h-3.002zm4.547 5.13c-.02 0-.04.003-.058.01-.072.025-.116.1-.09.172.62 1.72 1.974 2.195 2.52 2.27.07.01.133-.042.143-.112.01-.072-.04-.134-.11-.144l-.001-.001c-.459-.062-1.66-.487-2.216-2.064a.132.132 0 0 0-.188-.131zM9.03 5.892c-.34-.023-.711.072-.99.306-.803.66-.988 2.027-.243 3.475.41.798.975 1.501 1.649 2.082.285.27.584.518.9.742.814.587 1.765.962 2.604 1.184.49.125.957.18 1.363.168.539-.012.98-.175 1.272-.504.216-.244.338-.563.345-.898.003-.21-.042-.44-.203-.602-.353-.351-1.234-.95-1.64-1.183a.65.65 0 0 0-.87.143c-.128.149-.302.38-.425.518a.346.346 0 0 1-.399.073c-.38-.18-1.434-.813-2.105-2.044-.105-.19-.063-.41.098-.543.182-.15.373-.298.496-.43.253-.271.29-.685.093-1.02-.265-.444-.747-1.19-1.02-1.394-.146-.11-.316-.162-.489-.167h-.008z"/></svg>
+      Viber
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mars<span>Travel</span></div>
+  <p data-i18n="footerCopy"></p>
+  <p data-i18n="footerSub"></p>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════ */
+const TRANSLATIONS = {
+  uk: {
+    pageTitle:   'Mars Travel — Туристичні перевезення',
+    htmlLang:    'uk',
+
+    s1label: 'Наш транспорт',
+    s1title: 'Комфортні поїздки будь-куди Україною та Європою',
+    s2label: 'Туристичні маршрути',
+    s2title: 'Відкрийте красу нових міст разом з нами',
+    s3label: 'Незабутні враження',
+    s3title: 'Кожна поїздка — це нові спогади назавжди',
+    s4label: 'Групові тури',
+    s4title: 'Яскраві подорожі для дружних компаній',
+    s5label: 'Понад 10 років в дорозі',
+    s5title: 'Надійно, зручно, за доступними цінами',
+
+    phoneLabel: 'Зателефонуйте нам',
+
+    aboutLabel: 'Про компанію',
+    aboutTitle: 'Mars Travel — ваш надійний <em>супутник у подорожах</em>',
+    aboutP1:    'Компанія <strong>Mars Travel</strong> спеціалізується на організації комфортних туристичних перевезень по Україні та за кордоном. Ми дбаємо про кожного пасажира і робимо все, аби ваша поїздка була безпечною та приємною.',
+    aboutP2:    'Наш автопарк — це сучасні, технічно справні автобуси із кліматконтролем, зручними сидіннями та Wi-Fi. Досвідчені водії гарантують вчасне та безпечне прибуття до місця призначення.',
+
+    stat1: 'Років досвіду',
+    stat2: 'Маршрутів',
+    stat3: 'Клієнтів',
+
+    whyLabel: 'Чому обирають нас',
+    f1title: 'Сучасний автопарк',
+    f1text:  'Комфортабельні автобуси Euro 5 з усіма зручностями',
+    f2title: 'Безпека перш за все',
+    f2text:  'Досвідчені водії, регулярний технічний огляд',
+    f3title: 'Широка географія',
+    f3text:  'Україна, Польща, Чехія, Австрія та інші напрямки',
+    f4title: 'Доступні ціни',
+    f4text:  'Прозора цінова політика без прихованих доплат',
+    f5title: 'Підтримка 24/7',
+    f5text:  'Завжди на зв\'язку — до, під час і після поїздки',
+
+    socialLabel: 'Ми в мережі',
+    socialTitle: 'Слідкуйте за нами',
+    socialSub:   'Актуальні маршрути, акції та фото з подорожей — у наших соцмережах',
+
+    footerCopy: '© 2024 Mars Travel. Всі права захищені.',
+    footerSub:  'Туристичні перевезення по Україні та Європі',
+  },
+
+  ro: {
+    pageTitle:   'Mars Travel — Transport Turistic',
+    htmlLang:    'ro',
+
+    s1label: 'Transportul nostru',
+    s1title: 'Călătorii confortabile oriunde în Ucraina și Europa',
+    s2label: 'Rute turistice',
+    s2title: 'Descoperiți frumusețea orașelor noi împreună cu noi',
+    s3label: 'Experiențe de neuitat',
+    s3title: 'Fiecare călătorie — amintiri noi pentru totdeauna',
+    s4label: 'Tururi de grup',
+    s4title: 'Călătorii minunate pentru companii prietenoase',
+    s5label: 'Peste 10 ani pe drum',
+    s5title: 'Sigur, confortabil, la prețuri accesibile',
+
+    phoneLabel: 'Sunați-ne',
+
+    aboutLabel: 'Despre companie',
+    aboutTitle: 'Mars Travel — partenerul dvs. de încredere <em>în călătorii</em>',
+    aboutP1:    'Compania <strong>Mars Travel</strong> este specializată în organizarea transportului turistic confortabil în Ucraina și în străinătate. Avem grijă de fiecare pasager și facem tot posibilul ca călătoria dvs. să fie sigură și plăcută.',
+    aboutP2:    'Parcul nostru auto include autobuze moderne, din punct de vedere tehnic impecabile, cu aer condiționat, scaune confortabile și Wi-Fi. Șoferii experimentați garantează sosirea la timp și în siguranță la destinație.',
+
+    stat1: 'Ani de experiență',
+    stat2: 'Rute',
+    stat3: 'Clienți',
+
+    whyLabel: 'De ce ne aleg',
+    f1title: 'Parc auto modern',
+    f1text:  'Autobuze confortabile Euro 5 cu toate facilitățile',
+    f2title: 'Siguranța pe primul loc',
+    f2text:  'Șoferi cu experiență, inspecție tehnică regulată',
+    f3title: 'Geografie vastă',
+    f3text:  'Ucraina, Polonia, Cehia, Austria și alte destinații',
+    f4title: 'Prețuri accesibile',
+    f4text:  'Politică de prețuri transparentă fără taxe ascunse',
+    f5title: 'Suport 24/7',
+    f5text:  'Întotdeauna disponibili — înainte, în timpul și după călătorie',
+
+    socialLabel: 'Suntem online',
+    socialTitle: 'Urmăriți-ne',
+    socialSub:   'Rute actuale, promoții și fotografii din călătorii — în rețelele noastre sociale',
+
+    footerCopy: '© 2024 Mars Travel. Toate drepturile rezervate.',
+    footerSub:  'Transport turistic în Ucraina și Europa',
+  },
+
+  en: {
+    pageTitle:   'Mars Travel — Tourist Transportation',
+    htmlLang:    'en',
+
+    s1label: 'Our fleet',
+    s1title: 'Comfortable trips anywhere in Ukraine and Europe',
+    s2label: 'Tourist routes',
+    s2title: 'Discover the beauty of new cities together with us',
+    s3label: 'Unforgettable experiences',
+    s3title: 'Every trip — new memories to last a lifetime',
+    s4label: 'Group tours',
+    s4title: 'Vibrant journeys for friendly groups',
+    s5label: 'Over 10 years on the road',
+    s5title: 'Reliable, comfortable, at affordable prices',
+
+    phoneLabel: 'Call us',
+
+    aboutLabel: 'About us',
+    aboutTitle: 'Mars Travel — your reliable <em>travel companion</em>',
+    aboutP1:    '<strong>Mars Travel</strong> specializes in organizing comfortable tourist transportation across Ukraine and abroad. We care about every passenger and do everything to make your journey safe and enjoyable.',
+    aboutP2:    'Our fleet consists of modern, technically flawless buses with air conditioning, comfortable seats and Wi-Fi. Experienced drivers guarantee timely and safe arrival at your destination.',
+
+    stat1: 'Years of experience',
+    stat2: 'Routes',
+    stat3: 'Clients',
+
+    whyLabel: 'Why choose us',
+    f1title: 'Modern fleet',
+    f1text:  'Comfortable Euro 5 buses with all amenities',
+    f2title: 'Safety first',
+    f2text:  'Experienced drivers, regular technical inspections',
+    f3title: 'Wide geography',
+    f3text:  'Ukraine, Poland, Czech Republic, Austria and more',
+    f4title: 'Affordable prices',
+    f4text:  'Transparent pricing with no hidden fees',
+    f5title: '24/7 support',
+    f5text:  'Always available — before, during and after the trip',
+
+    socialLabel: 'We are online',
+    socialTitle: 'Follow us',
+    socialSub:   'Current routes, promotions and travel photos — on our social media',
+
+    footerCopy: '© 2024 Mars Travel. All rights reserved.',
+    footerSub:  'Tourist transportation in Ukraine and Europe',
+  }
+};
+
+/* ══════════════════════════════════════════
+   i18n engine
+══════════════════════════════════════════ */
+let currentLang = 'uk';
+
+function applyLang(lang) {
+  const t = TRANSLATIONS[lang];
+  if (!t) return;
+  currentLang = lang;
+
+  document.documentElement.lang = t.htmlLang;
+  document.title = t.pageTitle;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.dataset.lang === lang;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  try { localStorage.setItem('marsLang', lang); } catch(_) {}
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+
+/* init — system language detection → saved preference → fallback 'uk' */
+(function() {
+  const SUPPORTED = ['uk', 'ro', 'en'];
+
+  /* map of language-tag prefixes → our locale */
+  const LANG_MAP = {
+    uk: 'uk',                          // Ukrainian
+    ro: 'ro', mo: 'ro',               // Romanian (+ Moldovan legacy tag)
+    en: 'en',                          // English
+  };
+
+  /* walk navigator.languages (full ordered list) looking for first match */
+  function detectSystemLang() {
+    const list = Array.from(navigator.languages || [navigator.language || '']);
+    for (const tag of list) {
+      const prefix = tag.toLowerCase().split(/[-_]/)[0];
+      if (LANG_MAP[prefix]) return LANG_MAP[prefix];
+    }
+    return 'uk'; // default
+  }
+
+  /* saved pref wins only if user explicitly clicked a button before */
+  let saved;
+  try { saved = localStorage.getItem('marsLang'); } catch(_) {}
+
+  const preferred = (saved && SUPPORTED.includes(saved)) ? saved : detectSystemLang();
+  applyLang(preferred);
+})();
+
+/* ══════════════════════════════════════════
+   SLIDER
+══════════════════════════════════════════ */
+const track      = document.getElementById('track');
+const dotsWrap   = document.getElementById('dots');
+const progressEl = document.getElementById('progress');
+const slides     = Array.from(track.children);
+const TOTAL      = slides.length;
+let current      = 0;
+let timer;
+
+slides.forEach((_, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'dot' + (i === 0 ? ' active' : '');
+  btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+  btn.addEventListener('click', () => goTo(i, true));
+  dotsWrap.appendChild(btn);
+});
+const dots = dotsWrap.querySelectorAll('.dot');
+
+function goTo(index, resetTimer) {
+  dots[current].classList.remove('active');
+  current = ((index % TOTAL) + TOTAL) % TOTAL;
+  track.style.transform = 'translateX(-' + current * 100 + '%)';
+  dots[current].classList.add('active');
+  if (resetTimer) startTimer();
+}
+
+function startTimer() {
+  clearInterval(timer);
+  progressEl.style.transition = 'none';
+  progressEl.style.width = '0%';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    progressEl.style.transition = 'width 5s linear';
+    progressEl.style.width = '100%';
+  }));
+  timer = setInterval(() => goTo(current + 1, true), 5000);
+}
+
+startTimer();
+
+/* swipe */
+const slider = document.getElementById('slider');
+let tx = 0, ty = 0, swiping = false;
+
+slider.addEventListener('touchstart', e => {
+  tx = e.touches[0].clientX;
+  ty = e.touches[0].clientY;
+  swiping = true;
+}, { passive: true });
+
+slider.addEventListener('touchmove', e => {
+  if (!swiping) return;
+  if (Math.abs(e.touches[0].clientX - tx) > Math.abs(e.touches[0].clientY - ty))
+    e.preventDefault();
+}, { passive: false });
+
+slider.addEventListener('touchend', e => {
+  if (!swiping) return;
+  swiping = false;
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy))
+    goTo(current + (dx < 0 ? 1 : -1), true);
+});
+</script>
+</body>
+</html>
