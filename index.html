@@ -59,11 +59,14 @@
       flex-shrink: 0;
     }
     .logo-icon {
-      width: 38px; height: 38px;
-      background: var(--amber);
+      width: 42px; height: 42px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 19px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 0 14px var(--amber-glow);
     }
     .logo-text {
@@ -151,11 +154,11 @@
         rgba(13,27,42,.1) 45%,
         rgba(13,27,42,.72) 100%);
     }
-    .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80'); }
-    .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=1200&q=80'); }
-    .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1200&q=80'); }
-    .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80'); }
-    .slide:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=80'); }
+    .slide:nth-child(1) { background-image: url("BUS.png"); }
+    .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1552482496-3c03befc5c25?w=2340&q=80'); }
+    .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1570480264500-7a8356c3db4a?w=2370&q=80'); }
+    .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1661406904719-98b9b35291ea?w=2148&q=80'); }
+    .slide:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1652910031688-b95c80510f69?w=2148&q=80'); }
 
     .slide-caption {
       position: absolute;
@@ -413,7 +416,7 @@
 <!-- HEADER -->
 <header>
   <a class="logo" href="#">
-    <div class="logo-icon">🚌</div>
+    <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAJWCAYAAACapckfAAAXOElEQVR4nO3d27abuBIFUHxG/v+XfR4SOoQNNsYCVanmfOnel04rgEoLSeBpAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCPR+8GADk8n89n7zac9Xg81DrgFooNDOZoABI2Xvs0SDqewDQJVhDS1qDee+DOPGO1lOE49m4jcJ7OCze4Oig9n8/n4/F4jBJ+srs6GO2dZ4EM+tMJ4aT14PbNoCYQsaV1UBLI4Ho6E7xwNjwJSkTzzbUreMFxOgulfTPrJDwxkjPhqeWsLYxCJ2Bo39x9C06w7UgfWvYfgYtKXOykNxfwFnfcwHfe9UOzXIzOBU0Kn979CkwQk+DF6FywhHN0Bkp4grG86vOWFsnCxUk3AhTwzif1QeAiAhchlxOggNYELqJysdHckSAlRAFXeVd7BC2u5OLia++ClBAF9HTkJk/YohUXEodZ0gNGYmaLK7hoeGsvUAlQwGi2wpSQxSdcKPwgSAH8tlUHhSxecXHwn62CIUwB/Lasj/ZmsccFwQ/CFMBr65AlYDFzIRS2LgYC1TkKKiPQ/8/R/1lzQRQkUH3u8Xg83JVSmTrxmtrAzIVQiEB1nqIJasYR9mHhZBcgUJ03HzezVfCb+nGMPVh1OdGDmzu0Yvg5oQq2qSfHqSP1OMkFKILnKIKwT105Ti2p5X+9G0B7y4Kn+J2jEMJr+shx6nAtgtVgltPNOvM5BgygtecfvdvB9QwgA9J5v+PVCnCcenOO+jIuM1aDUeQA4rNlY1yC1UB0TuAu6s33vOdqTILVIBS5thQ64A5q93gEq8TmDqljAuSlho9FsErKiz8BxqGWj0OwSkioAhiPmj4GwSohoeo69lYBPant+QlWsKCoAb2pQ7kJVgnpdABjU+fzEqyS0dnu4TgDUahHufzq3QCO07mAKOxHvJ4XiOZkxgo2KGTwnps9+EmwSkIBu49jDa/pI/dyvHMRrBLQqYBIvPIF9glWsMHHBQGRPP/o3Q7eE6yC05H6mvdaOQ9Ut+wD+kNfjn9sNugGpwP1tw5XNrZTmZrUl/oTnxMUmAIWx7tiNn9+413tgbupR3HMe9zUnJiclMAUstgUNUam/sSl9sTm5AQz34UoagDsEa7isnk9GJ0FAPISrAIyWwXAK8aJuASrQHQUAMhNsArEMiAAR3mRcUyCVTA6CADkJVgFIVABcIbVjlgEqyB0DAA+5aY8HsEKAJITsOIQrALRMQAgN8EKAJKznSQOJyIQM1ZEk6lY6z9U5oOZ4/jVuwHV+WxAzlA8f8p+TNQAGINgBQ31GtxbDsrZA0prdwWe3sddsMuv9zXEb4IVTPcUpE8Hrk/apKBeJ+qxbX09ffv3FMzgt5AFoyJFqZ2WA+G78xJ10IUzjtShq655NfB79lnFYMaKsFoVh2/CkQJFJVf2udYzZoIYURk0AqhSIK5cahCAIL+9Pt6if1eos2asYjBj1dGoHeCTv9Mnd7YjHivgr29mrb6ZEasQuriPgaqjrK9aOFL8ziwFAFxlXZOO1qNM9VmNjcFJCCBaxz1TcHRoILMz9Sxa7Z4mtTgCJyCAnp1zrxMKTQB/Ha2JvcOWet2fExBAj4647HxCFMA5e/WzV8BSw/tzAgK4swOuO75OCNDOuq7eHbDU9P7+17sB9KMDArS1rqvqbD2CVRGPP3q3A6AatbcWwaqQ3psqAbieWt+XYFWIuyaA+9nPWotgVUDGl5ACjEKoqkWwAgBoRLACgBuYuapBsAKAi9mOUYdgBQDQiGAFANCIYAUA0IhgBQDQiGAFABfzRGAdghUAQCOCFQBAI4IVAEAjghUAQCOCFQBAI4IVAEAjghUAQCOCFQBczIcw1yFYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA0IlgBADQiWAHAxR6Px6N3G7iHYAUA0IhgBQDQiGAFANCIYAUA0IhgBQDQiGAFANCIYAUA0IhgBQDQiGAFANCIYAUA0IhgBQDQiGAFANCIYAUA0IhgBQDQiGAFANCIYAUA0IhgBQDQiGAFANCIYLXh+Xw+e7cBAHrbGw+fC3e3KbpfvRsQ0ePxePRuAwD08nw+n48/5n9fhqj1ODn/zv0tjUewWjmavl1AAIxoGZLmMXE9Nq5D1vL3q4+PJYPV+sSfmcp08QAwovXs1Dvz764D1vy9a1oZV6lgtZzanL9u8ee1aR0A9Hd2bHy1VFhJmc3r66nNVhvu9qZJASCL1mPZepytNEaWmLHa2njXWuV0DkBuV41hyyXBKqs8Q89YrU/o1f+fSokcgLFcPU5WCFXTNHiwarWXCgD4TpWlwaGD1TTde/KqpHEAxnLXWFnhacFhg9Xdb4QdOX0DMKYeY9foM1dDBqueJ2rEiwQAWponP0acuRouWAk2AJDDiGN2+mAVbUpxxPQNwJgijFkRxu6WUr/H6o73UwEA1xppU3vqGasRTgAAMI7UwWqaxptCBICqRhjTUwerEU4AAPBX9k8zSRussh5wAOC1zK9iSBusAACiSRmszFYBwNiyLgmmCVZZDzAAcE7GJcE0wSrbgQUA6kkTrKbJbBUAVJNt7E8VrACAmrIELMEKAAgvy5YgwQoAoJHwwcrTgABQW6YsED5YAQBkET5YZVlTBQCulSEThA9WAABZpAhWGdZUAQBSBCsAgAwEKwCARgQrAIBGUgSrDE8BAACkCFYAABkIVgAAjQhWAACNhA9W3mEFAExTjkwQPlgBAGSRJlh5MhAAasuQBcIHqwwHEQC4TqYsED5YAQBkkSJYZdisBgBcJ0sWSBGsMk0BAgDtZckCKYLVLMtBBQDayDb2pwlWWaYAAYC60gQrAIDo0gSreSow25QgAHBOxjE/TbCaJsuBAFBNtrE/VbACAGrIulKVKlhlPcgAQA2pgtU05ZsSBAA+k3kCJV2wMmsFAESVLlhNk1krACCmlMHKrBUAjCn72J4yWAEA48q8MiVYAQAhjLAilT5YZT74AMBY0geraRKuACC7UcbyIYJVJJnXhQGgh1FC1TQNFKxGOilXcHwA+nDDXcswwYp9OjVAfxFrcYQ2jXbjP1SwinByIrQBgDiMC7UMFaymyQUMAFmMOGYPF6x6iX5xRJjuBahKDa5jyGDVK+RE7zjR2wcwimW9jVx7e76QM/qExFnDBavIF3AEjg/A9ebQoOZuGzVUTdOAwUr6fi/LnRRAZlnqa692Zjk+n/rVuwFXejwejztOXJZAtTQfl4xtB4gsW2C4exwY4fMAXxluxqqXbB1pZvYK4Duj1NE7gs6oYWpp6GD1fD6fV5/EEZL3cvYqc1EAuNPzD/upWBo6WN0VekboTOulwRH+TgBXmQPVfEM6Ss28crzMPAHxiaGD1dIVJ3S0i2RZHMxeAfy0rpHq5DGjjZevlAlW03TdiR3tgjF7BbBNXfzcaGPkO6WC1TS1O8GjXyjr2ave7QHoZb05ffRQ1bLmVxw/ygWrafr+RFe6UCoUEYBXKs5StRjnKo2VSyWD1TSdP+FVLxQBC6iqav37ZpysOlZO0+AvCH3nk7uQyhfJ0h2vsADoxesT/mWc/Fzpg7AXEu7eW5S18y47nA4FZLauY5nr8pU1eX1c1P6fHJAAsnbgmY4FjCB7LZ6m64KVG+jjyu6xemWEznWn9fFy/IBs1K3XhKrjBKsNLqDPbb2eoeqGTyCurRtBdYqWSm9ep71luBJQgSiWH0Ezf927TYxJsOISy6JlkzvQkyf9uJNgxeW2lggFLOBK69lzgYq72GPFbezBAq62FajUGe4kWHGr9SZ30/NAC27ciMJSIF2s92BZGgQ+5SaNiAQrutt60/3db78H8tianerbIvhLsCIMr2oAXhGoyECwIpytVzXM3xe4oC6BigwEK0Lbex/W8mtgPKN8KDL1eCqQNPY2qiq4MIatj8aav9+vVfAZM1ak8uppQkuFkNP642bm7/VsE5wlWJHWXsiyVAjxeVUCoxKsGMLehncgjuWsstkpRiVYMRxPFUIcZqaoRrBiaK9C1vp7QHvCFNV4KpAy9j6ncP5Zv5ZBfnt9yJO7VGPGinLWRX5vicJsFuxbz/q6UYHfBCvKexWmLBnCX++W1gHBCv7x7j1Zy5/d3TboxXum4DjBCna8ClnLnwtZjGb9BK1ABccJVnDAq31Z698RtMhk67oVpOA8wQpOOBK0IKJXm86XPwfOEaygga3BaCtoeUkpd3u1rDf//P5WwbgEK7iI5UPutPdwhWU9uJdgBTc5unzo6UPe2bpG3l1LwD0EK+hkb/lQ2GK2FcaX/3z1u0AfghUE8slAuv59gSu3Tx6IEKIgLsEKAtsbQAWuvI7shdr6XSAHwQoSOhu4tv57wau9vZnH9b/v/T6Ql2AFA3kXuPa+fvVnCF7/evV5eZ/MJAJjUjADUGyJ4GyAOvoOr+hazeLpz/T0eDwe3pfXlxkrYJqm14HgVZFuGcha+6RtnyyfAuwRrIC3vgkVe4Gl5x21kARcRbACLiXEAJX8r3cDAABGIVgBADQiWAEANCJYAQA0IlgBADQiWAEANCJYAQA04j1WbPJZZwC/bX1MjFrIHsGK/xx5E7bCAlSw98Hlc8BSC9kjWDFN07mPF1FYgFFs1cC5ri1/tgxY89fr71GbYEWTz2xTWICM1vVvKzAd+e9gZvN6ca2Kw7oYKTpAZHszTWfr13oPFnUJVjSxtSwoZAGRrGvS1lLfN392qz+L3ASrwq4qAMui1bJwAZx1Z11S72qzx6qoOzr+q6dqrv5/A6xn0u+YQbckiBkrbnN0UyjAN+Ya02PWXG3DjBW32ZvBmiazWMD3tmaoerZFXavJjFVBEe+ozGIBZ/WcodoiUNVmxooQ1vsfFCbgnSue7oNvCVaEsCyQAhbwSvRAFa093MtSYFFRA8tWwVSkgGn6ueQXvT5EbhvXEawIKfodKXCvvVltiMZSYFFZitK6mM7fjzrjBrSzVaey1K7eTyXSjxkrUnj1qgZgLFtP+UEWZqxIxwZ3GFOk91DBWYIV6ezNXglYkJOHVhiJYFXMyMVKwIJ89vZRQlb2WDEMd7uQx7qfjtZnR/v7cJxgxTDWm10VNojHjQ+jE6wYyvJpouXXvdsF1XnghCoEK4a0tcFdwII+vC6FSgQrSrA8CPdbzyBDBYIVJfg4DLiXp/2oSrCilPVTSAo+tLW1z7F3m+BOghVlKfzQznpzun5FVYIVZS1fz2D2Cs7benN63xZBP4IVpVm2gO+YpYJ/CVYw/dx71bMtkMHob06HswSrYjz2/J6lQdinbxyj1tYlWMGKpUHYpj/Ae796NwAi2lricAdKVQIVHGfGCt4we0Vlrnv4jGAFb/hIDqoyW3ueQFqXYFWUQvmZuUjauEsVnviDcwQrOEHAYmSu7TbcwNYkWMEXDECMxjUN3xGsilI823EsGYFZ2HbMVNUmWAEANCJYFTTfTbmrasedPpm5fttyPGsTrKARxZSMXLdtuXFFsCpMQW3PMQWoTbCCRtyhko0bgfa8UBjBqigdv73lS0R7twW4n7rKNAlW0JTCShZmVuAaglVhimp7Zq2gLmGVaRKsylMEoC43AG14EpAlwQpFAYoRqNpyPFkSrJim6XeoMo0NcI7ayUyw4h/uvNpxLKEGoYolwYr/LIuDQgHwnlrJmmDFP+YiYVkQxqVvt+E4skWw4ofnH/NSluIBYFafYwQrdi1nr3q3JRNPWcJY1jP5+javCFa8tC4iigqMQ18+RqDiE4IVhyzv2BSZ18zwkYVrddvWDWXP9pDLr94NII9lcVkW5OV+LH5TiIlOv/3X+uZx+T34hGDFKa+KkGINOQhXf61vFnu2hdwEK76yFbDWP69WuBVlyEe/pRXBiia2itI6bO0tJY7ARwKR1cg3P+9m0fVXrjBkZ8qmQud+VbjXf/+sRb7CeWRcWfvdNB3fhlChj843eJnPZ3YOfAAVOvvaJ51+bzasbYuO/f/3ljvvagvcYX2d95ht3utX39aO0QlW/TnwAVTs/Ef0LKCfzLDByM4M0O/6SItBXz/cJlj158AHoECcc0fhcG5g25X9T787T7Dqz+Z10lJ8oR/9D7Z58zoAQCOCFQBAI4IVAEAjghUAQCOCFQBAI4IVAEAjghUAQCPeYwUJefnfmLwbCvJTnDua346rmPKOIMU0CV68p1b0Z8YKAlsWyXlQVTjrms+9gAVx2WMFQa0D1OOPXu0hDtcBxCVYQUAGTt5xjUBMghUEY8DkKNcKxCNYdaQoAtCKMSUGwQoABuHBhv4EqwDcZQDAGAQrAIBGBKvOTNsC3zDjzZLroT/BCgCSE6jiEKyC0CkAID/BqjOBCoAWbC2JQbACAGhEsAKAxOaVDysgMQhWAJCcZcA4BKtA3G0AQG6CVRDuNgD4lBvyeASrIHQOAM4yhsQhWAFAYlY8YhGsAnk+n093HQB8wrgRi2AViM4BwFHGjJgEq4B0FgDISbAKxlo5AO+4AY9LsArGG3QBIC/BCgASceMdm2AVmM4DALkIVkHZawXAmhvu+ASroOy1qk2w5p35GnGt1OOcxyZYQUACNe+4Rupxw52DYJWATlSLu1GOcq3UMY8Dznl8glUSwlU9CiiwZiyIT7BKRIeqY/7cSOEKUPtz+dW7AcC25Ydy+4BuZsI2xKZQJ6Sw1iNUMdP/a9H383HCklJc61Joa9Ln69HXc3LSklkvD/VuDwDtCVV52byezHJDs44HMB61PTfBKiHhCmBMViTyE6ySEq4AxuIp4DEIVokJVwBjEKrGIVglJ1wB5CZUjUWwGoBwBZCTUDUeJ3EgXsUAkIcgNSYzVgNZdlIdFiAunwU6LoNvATovQAyW/sZnxmpg9l0BxCFU1eDEFmLmCuB+AlUtTnARNrYD3GsZooSqOpzkwgQsgPYEqNqcfAQsgAbMUDFNghULAhbA5wQollwMTNO0fXclaAFs26qXAhbTJFjxAUELqEpo4igXCrte3YEJWQot49K/9/u3mSnecXHwsbmwVC++jgEjcT2/Jkxx1K/eDYDMFFtGMoer6iFLv+YbPtKGjyk6wMgqh0q+J1jxMUUHALYJVvAFIRPGY1aebwhWAACNCFYAAI0IVgAAjQhWAACNCFYAAI0IVgAAjQhWAACNCFYAAI0IVgCw4MW/fEOwAgBoRLACAGhEsAIAaESwAgBoRLACAGhEsAIAaESwAgBoRLACgIXH4/Ho3QbyEqwAABoRrAAAGhGsAAAaEawAABoRrOALNrkCsCRYwQkCFQBbBCs+JlQAwDbBitMELBjP3K/1bzhHsIIPGXBgXPo333IB8bXn8/ns3Ya7KLpUU6V/69sAAADkVOXOHarRtwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+8n/ThpWFS9nqzQAAAABJRU5ErkJggg==" alt="Mars Travel bus" style="width:28px;height:28px;object-fit:contain;display:block;" /></div>
     <div class="logo-text">Mars<span>Travel</span></div>
   </a>
   <div class="lang-switcher" role="group" aria-label="Мова / Language">
@@ -464,10 +467,14 @@
 <!-- PHONE STRIP -->
 <div class="phone-strip">
   <a href="tel:+380509172964" aria-label="Зателефонувати">
-    <div class="phone-icon">📞</div>
+    <div class="phone-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
+        </svg>
+      </div>
     <div>
       <span class="phone-label" data-i18n="phoneLabel"></span>
-      +38 (050) 917-29-64
+      +38 (0XX) XXX-XX-XX
     </div>
   </a>
 </div>
@@ -524,7 +531,7 @@
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.93-1.956 1.874v2.295h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
       Facebook
     </a>
-    <a href="https://instagram.com/mars_travel___" target="_blank" rel="noopener noreferrer" class="social-btn btn-instagram" aria-label="Instagram">
+    <a href="https://instagram.com/MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-instagram" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       Instagram
     </a>
@@ -560,7 +567,7 @@
 ══════════════════════════════════════════ */
 const TRANSLATIONS = {
   uk: {
-    pageTitle:   'Mars Travel — Туристичні перевезення',
+    pageTitle:   'MarsTravel — Туристичні перевезення',
     htmlLang:    'uk',
 
     s1label: 'Наш транспорт',
@@ -606,7 +613,7 @@ const TRANSLATIONS = {
   },
 
   ro: {
-    pageTitle:   'Mars Travel — Transport Turistic',
+    pageTitle:   'MarsTravel — Transport Turistic',
     htmlLang:    'ro',
 
     s1label: 'Transportul nostru',
@@ -652,7 +659,7 @@ const TRANSLATIONS = {
   },
 
   en: {
-    pageTitle:   'Mars Travel — Tourist Transportation',
+    pageTitle:   'MarsTravel — Tourist Transportation',
     htmlLang:    'en',
 
     s1label: 'Our fleet',
