@@ -2,6 +2,8 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./images/bus.png" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0D1B2A" />
   <title>Mars Travel</title>
@@ -154,7 +156,7 @@
         rgba(13,27,42,.1) 45%,
         rgba(13,27,42,.72) 100%);
     }
-    .slide:nth-child(1) { background-image: url("BUS.png"); }
+    .slide:nth-child(1) { background-image: url("images/auto-bus.png"); }
     .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1552482496-3c03befc5c25?w=2340&q=80'); }
     .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1570480264500-7a8356c3db4a?w=2370&q=80'); }
     .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1661406904719-98b9b35291ea?w=2148&q=80'); }
@@ -210,44 +212,71 @@
     .phone-strip {
       background: var(--navy);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
+      gap: 6px;
+      padding: 12px 18px;
     }
-    .phone-strip a {
+    .phone-strip-label {
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+    /* На мобільному — стовпець, на ширших — рядок */
+    .phone-strip-numbers {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+    @media (min-width: 560px) {
+      .phone-strip-numbers {
+        flex-direction: row;
+        justify-content: center;
+        gap: 4px 8px;
+        flex-wrap: wrap;
+      }
+      .phone-dot { display: flex; }
+    }
+    .phone-strip-numbers a {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: .04em;
       transition: color .2s;
+      white-space: nowrap;
+      /* мінімум 48px tap target за висотою */
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .phone-strip a:active { color: var(--amber-light); }
-    @media (hover: hover) { .phone-strip a:hover { color: var(--amber-light); } }
+    .phone-strip-numbers a:active { color: var(--amber-light); }
+    @media (hover: hover) { .phone-strip-numbers a:hover { color: var(--amber-light); } }
     .phone-icon {
-      width: 36px; height: 36px;
+      width: 28px; height: 28px;
       background: var(--amber);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 17px;
       flex-shrink: 0;
-      box-shadow: 0 0 12px var(--amber-glow);
+      box-shadow: 0 0 10px var(--amber-glow);
     }
-    .phone-label {
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.45);
-      display: block;
-      margin-bottom: 1px;
+    /* Крапки видно лише в рядковому режимі */
+    .phone-dot {
+      display: none;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      flex-shrink: 0;
     }
-    @media (min-width: 480px) {
-      .phone-strip a { font-size: 1.25rem; }
+    @media (min-width: 768px) {
+      .phone-strip-numbers a { font-size: 1.1rem; }
     }
 
     /* ══════════════════════════════
@@ -416,7 +445,7 @@
 <!-- HEADER -->
 <header>
   <a class="logo" href="#">
-    <div class="logo-icon"><img src="data:image/png;base64,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" alt="Mars Travel bus" style="width:28px;height:28px;object-fit:contain;display:block;" /></div>
+    <div class="logo-icon"><img src="images/bus.png" alt="Mars Travel bus" style="width:28px;height:28px;object-fit:contain;display:block;" /></div>
     <div class="logo-text">Mars<span>Travel</span></div>
   </a>
   <div class="lang-switcher" role="group" aria-label="Мова / Language">
@@ -466,17 +495,29 @@
 
 <!-- PHONE STRIP -->
 <div class="phone-strip">
-  <a href="tel:+380509172964" aria-label="Зателефонувати">
-    <div class="phone-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <span class="phone-strip-label" data-i18n="phoneLabel"></span>
+  <div class="phone-strip-numbers">
+    <a href="tel:+380770705505" aria-label="Зателефонувати">
+      <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
-        </svg>
-      </div>
-    <div>
-      <span class="phone-label" data-i18n="phoneLabel"></span>
+        </svg></div>
+      +38 (077) 070-55-05
+    </a>
+    <div class="phone-dot"></div>
+    <a href="tel:+380953306961" aria-label="Зателефонувати">
+      <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
+        </svg></div>
+      +38 (095) 330-69-61
+    </a>
+    <div class="phone-dot"></div>
+    <a href="tel:+380509172964" aria-label="Зателефонувати">
+      <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
+        </svg></div>
       +38 (050) 917-29-64
-    </div>
-  </a>
+    </a>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -543,11 +584,11 @@
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       Telegram
     </a>
-    <a href="https://wa.me/380509172964" target="_blank" rel="noopener noreferrer" class="social-btn btn-whatsapp" aria-label="WhatsApp">
+    <a href="https://wa.me/380770705505" target="_blank" rel="noopener noreferrer" class="social-btn btn-whatsapp" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
       WhatsApp
     </a>
-    <a href="viber://chat?number=%2B380509172964" target="_blank" rel="noopener noreferrer" class="social-btn btn-viber" aria-label="Viber">
+    <a href="viber://chat?number=%2B380770705505" target="_blank" rel="noopener noreferrer" class="social-btn btn-viber" aria-label="Viber">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.398.002C9.473.028 5.331.344 3.014 2.467 1.294 4.177.693 6.698.623 9.82c-.07 3.12-.154 8.972 5.5 10.557v2.428s-.038.968.606 1.163c.76.234 1.14-.262 3.532-3.102 3.986.33 7.05-.427 7.4-.54.806-.262 5.367-.84 6.108-6.862.764-6.2-.37-10.116-2.978-11.905l-.001-.001c-.706-.49-3.373-1.564-9.392-1.556zm.056 1.718c5.46-.008 7.913.892 8.478 1.274 2.104 1.462 3.085 4.916 2.408 10.299-.612 5.022-4.168 5.34-4.854 5.562-.294.096-3.004.756-6.433.537 0 0-2.55 3.072-3.344 3.871-.245.248-.515.222-.51-.267 0-.327.019-4.055.019-4.055-4.848-1.326-4.567-6.328-4.509-9.07.061-2.745.556-4.88 2.01-6.334 1.968-1.82 5.588-1.81 6.735-1.817zm-.046 2.386c-.205.006-.307.207-.309.379 0 0-.057 3.838 3.765 4.849l.01-4.849s-.096-.39-.464-.379h-3.002zm4.547 5.13c-.02 0-.04.003-.058.01-.072.025-.116.1-.09.172.62 1.72 1.974 2.195 2.52 2.27.07.01.133-.042.143-.112.01-.072-.04-.134-.11-.144l-.001-.001c-.459-.062-1.66-.487-2.216-2.064a.132.132 0 0 0-.188-.131zM9.03 5.892c-.34-.023-.711.072-.99.306-.803.66-.988 2.027-.243 3.475.41.798.975 1.501 1.649 2.082.285.27.584.518.9.742.814.587 1.765.962 2.604 1.184.49.125.957.18 1.363.168.539-.012.98-.175 1.272-.504.216-.244.338-.563.345-.898.003-.21-.042-.44-.203-.602-.353-.351-1.234-.95-1.64-1.183a.65.65 0 0 0-.87.143c-.128.149-.302.38-.425.518a.346.346 0 0 1-.399.073c-.38-.18-1.434-.813-2.105-2.044-.105-.19-.063-.41.098-.543.182-.15.373-.298.496-.43.253-.271.29-.685.093-1.02-.265-.444-.747-1.19-1.02-1.394-.146-.11-.316-.162-.489-.167h-.008z"/></svg>
       Viber
     </a>
@@ -567,7 +608,7 @@
 ══════════════════════════════════════════ */
 const TRANSLATIONS = {
   uk: {
-    pageTitle:   'MarsTravel — Туристичні перевезення',
+    pageTitle:   'Mars Travel — Туристичні перевезення',
     htmlLang:    'uk',
 
     s1label: 'Наш транспорт',
@@ -613,7 +654,7 @@ const TRANSLATIONS = {
   },
 
   ro: {
-    pageTitle:   'MarsTravel — Transport Turistic',
+    pageTitle:   'Mars Travel — Transport Turistic',
     htmlLang:    'ro',
 
     s1label: 'Transportul nostru',
@@ -659,7 +700,7 @@ const TRANSLATIONS = {
   },
 
   en: {
-    pageTitle:   'MarsTravel — Tourist Transportation',
+    pageTitle:   'Mars Travel — Tourist Transportation',
     htmlLang:    'en',
 
     s1label: 'Our fleet',
