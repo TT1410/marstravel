@@ -17,7 +17,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0D1B2A" />
-  <title>Mars Travel</title>
+  <title>Mars Travel — Паломницькі поїздки</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -368,6 +368,73 @@
       font-size: 19px; box-shadow: 0 3px 10px var(--amber-glow);
     }
 
+
+    /* ══ SERVICES SECTION ══ */
+    .services-section {
+      background: var(--cream-dark);
+      padding: 40px 18px 36px;
+    }
+    @media (min-width: 768px) {
+      .services-section {
+        padding: 56px 48px 52px;
+      }
+    }
+    .services-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    @media (min-width: 560px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .service-card {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      border-left: 3px solid var(--amber);
+    }
+    .service-icon {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .service-card strong {
+      display: block;
+      font-size: .93rem;
+      color: var(--navy);
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+    .service-card p {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 300;
+      margin: 0;
+    }
+    /* Картка-гарантія — повна ширина */
+    .service-card.full {
+      grid-column: 1 / -1;
+      border-left-color: var(--amber);
+      background: linear-gradient(135deg, var(--navy) 0%, #162336 100%);
+      color: #fff;
+    }
+    .service-card.full strong { color: var(--amber-light); font-size: 1rem; }
+    .service-card.full p { color: rgba(255,255,255,.65); }
+
     /* ══════════════════════════════
        SOCIALS
     ══════════════════════════════ */
@@ -508,21 +575,21 @@
 <div class="phone-strip">
   <span class="phone-strip-label" data-i18n="phoneLabel"></span>
   <div class="phone-strip-numbers">
-    <a href="tel:+380770705505" aria-label="Зателефонувати">
+    <a href="tel:+380770705505" aria-label="Зателефонувати: +38 077 070 55 05">
       <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
         </svg></div>
       +38 (077) 070-55-05
     </a>
     <div class="phone-dot"></div>
-    <a href="tel:+380953306961" aria-label="Зателефонувати">
+    <a href="tel:+380953306961" aria-label="Зателефонувати: +38 095 330 69 61">
       <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
         </svg></div>
       +38 (095) 330-69-61
     </a>
     <div class="phone-dot"></div>
-    <a href="tel:+380509172964" aria-label="Зателефонувати">
+    <a href="tel:+380509172964" aria-label="Зателефонувати: +38 050 917 29 64">
       <div class="phone-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
         </svg></div>
@@ -572,6 +639,50 @@
   </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="services-inner">
+    <p class="section-label" data-i18n="servicesLabel"></p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🗓️</div>
+        <div>
+          <strong data-i18n="srv1title"></strong>
+          <p data-i18n="srv1text"></p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚌</div>
+        <div>
+          <strong data-i18n="srv2title"></strong>
+          <p data-i18n="srv2text"></p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <div>
+          <strong data-i18n="srv3title"></strong>
+          <p data-i18n="srv3text"></p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧳</div>
+        <div>
+          <strong data-i18n="srv4title"></strong>
+          <p data-i18n="srv4text"></p>
+        </div>
+      </div>
+      <div class="service-card full">
+        <div class="service-icon">🤝</div>
+        <div>
+          <strong data-i18n="srv5title"></strong>
+          <p data-i18n="srv5text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SOCIALS -->
 <section class="socials-section">
   <p class="section-label" data-i18n="socialLabel"></p>
@@ -579,8 +690,6 @@
   <p data-i18n="socialSub"></p>
 
   <div class="social-grid">
-<!--    Тимчасово вимикаємо фейсбук-->
-<!--    <a href="https://facebook.com/MarsTravel" target="_blank" rel="noopener noreferrer" class="social-btn btn-facebook" aria-label="Facebook">-->
 <!--      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.93-1.956 1.874v2.295h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>-->
 <!--      Facebook-->
 <!--    </a>-->
@@ -661,6 +770,18 @@ const TRANSLATIONS = {
     socialTitle: 'Слідкуйте за нами',
     socialSub:   'Актуальні маршрути, фото зі святих місць та новини паломництва — у наших соцмережах',
 
+
+    servicesLabel: 'Наші послуги',
+    srv1title: 'Екскурсії вихідного дня',
+    srv1text:  'Організовуємо одноденні та дводенні екскурсійні поїздки для груп і родин',
+    srv2title: 'Оренда автобуса з водієм',
+    srv2text:  'Комфортний автобус з досвідченим водієм для будь-якого маршруту',
+    srv3title: 'Індивідуальні трансфери',
+    srv3text:  'Туризм, ділові зустрічі, трансфер до аеропорту та інші напрямки',
+    srv4title: 'Великий багажний відсік',
+    srv4text:  'Просторий відсік для валіз, паломницького спорядження та групового багажу',
+    srv5title: 'Порядність та надійність — наша гарантія',
+    srv5text:  'Ми цінуємо довіру кожного клієнта і завжди виконуємо взяті на себе зобов\'язання',
     footerCopy: '© 2026 Mars Travel. Всі права захищені.',
     footerSub:  'Паломницькі поїздки по святих місцях України та Європи',
   },
@@ -707,6 +828,18 @@ const TRANSLATIONS = {
     socialTitle: 'Urmăriți-ne',
     socialSub:   'Rute actuale, fotografii din locuri sfinte și noutăți despre pelerinaje — în rețelele noastre',
 
+
+    servicesLabel: 'Serviciile noastre',
+    srv1title: 'Excursii de weekend',
+    srv1text:  'Organizăm excursii de o zi sau două zile pentru grupuri și familii',
+    srv2title: 'Închiriere autobus cu șofer',
+    srv2text:  'Autobus confortabil cu șofer experimentat pentru orice rută',
+    srv3title: 'Transferuri individuale',
+    srv3text:  'Turism, întâlniri de afaceri, transfer aeroport și alte destinații',
+    srv4title: 'Compartiment bagaje spațios',
+    srv4text:  'Spațiu generos pentru valize, echipament de pelerinaj și bagaje de grup',
+    srv5title: 'Seriozitate și fiabilitate — garanția noastră',
+    srv5text:  'Prețuim încrederea fiecărui client și ne respectăm întotdeauna angajamentele',
     footerCopy: '© 2026 Mars Travel. Toate drepturile rezervate.',
     footerSub:  'Pelerinaje la locurile sfinte din Ucraina și Europa',
   },
@@ -753,6 +886,18 @@ const TRANSLATIONS = {
     socialTitle: 'Follow us',
     socialSub:   'Current routes, photos from holy places and pilgrimage news — on our social media',
 
+
+    servicesLabel: 'Our services',
+    srv1title: 'Weekend excursions',
+    srv1text:  'We organize one and two-day excursion trips for groups and families',
+    srv2title: 'Bus rental with driver',
+    srv2text:  'Comfortable bus with an experienced driver for any route',
+    srv3title: 'Individual transfers',
+    srv3text:  'Tourism, business meetings, airport transfers and more',
+    srv4title: 'Large luggage compartment',
+    srv4text:  'Spacious storage for suitcases, pilgrimage gear and group luggage',
+    srv5title: 'Integrity and reliability — our guarantee',
+    srv5text:  'We value every client\'s trust and always honour our commitments',
     footerCopy: '© 2026 Mars Travel. All rights reserved.',
     footerSub:  'Pilgrimages to holy places in Ukraine and Europe',
   }
